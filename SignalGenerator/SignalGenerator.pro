@@ -26,10 +26,14 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        oscillator.cpp \
+        sinusoscillator.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+        oscillator.h \
+        sinusoscillator.h
 
 FORMS += \
         mainwindow.ui
