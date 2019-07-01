@@ -10,7 +10,7 @@ SinusOscillator::SinusOscillator(double phase, double frequency, double amplitud
 
 void SinusOscillator::_generate()
 {
-  unsigned long time = 0;
+  double time = 0;
   while (!_is_stopped) {
       unsigned long samplingPeriod = static_cast<unsigned long>(1 / frequency() * 1000);
       QThread::msleep(samplingPeriod);
