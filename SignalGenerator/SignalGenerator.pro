@@ -31,6 +31,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         oscillator.cpp \
+        serverdatainput.cpp \
         sinusoscillator.cpp \
         tcpclient.cpp
 
@@ -42,6 +43,7 @@ HEADERS += \
         frameparser.h \
         mainwindow.h \
         oscillator.h \
+        serverdatainput.h \
         sinusoscillator.h \
         tcpclient.h
 
