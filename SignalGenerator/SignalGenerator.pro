@@ -25,12 +25,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        framecreator.cpp \
         main.cpp \
         mainwindow.cpp \
         oscillator.cpp \
         sinusoscillator.cpp
 
 HEADERS += \
+        channelattributes.h \
+        frame.h \
+        framecreator.h \
         mainwindow.h \
         oscillator.h \
         sinusoscillator.h
