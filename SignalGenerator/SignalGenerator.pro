@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network
 
 TARGET = SignalGenerator
 TEMPLATE = app
@@ -25,21 +25,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        client.cpp \
         framecreator.cpp \
         frameparser.cpp \
         main.cpp \
         mainwindow.cpp \
         oscillator.cpp \
-        sinusoscillator.cpp
+        sinusoscillator.cpp \
+        tcpclient.cpp
 
 HEADERS += \
         channelattributes.h \
+        client.h \
         frame.h \
         framecreator.h \
         frameparser.h \
         mainwindow.h \
         oscillator.h \
-        sinusoscillator.h
+        sinusoscillator.h \
+        tcpclient.h
 
 FORMS += \
         mainwindow.ui
