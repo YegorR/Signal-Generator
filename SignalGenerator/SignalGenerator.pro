@@ -26,6 +26,7 @@ CONFIG += c++11
 
 SOURCES += \
         framecreator.cpp \
+        frameparser.cpp \
         main.cpp \
         mainwindow.cpp \
         oscillator.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
         channelattributes.h \
         frame.h \
         framecreator.h \
+        frameparser.h \
         mainwindow.h \
         oscillator.h \
         sinusoscillator.h
