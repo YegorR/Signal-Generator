@@ -6,6 +6,7 @@
 
 #include "serverdatainput.h"
 #include "channeldatainput.h"
+#include "oscillatorinput.h"
 
 namespace Ui {
   class MainWindow;
@@ -24,6 +25,7 @@ private:
   QGridLayout* _layout;
   ServerDataInput* _serverDataInput;
   ChannelDataInput* _channelDataInput;
+  OscillatorInput* _oscillatorInput;
 };
 
 #endif // MAINWINDOW_H

@@ -15,6 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
   _layout->addWidget(_serverDataInput, 0, 0);
   _channelDataInput = new ChannelDataInput(this);
   _layout->addWidget(_channelDataInput, 1, 0);
+
+  _oscillatorInput = new OscillatorInput(this);
+  _layout->addWidget(_oscillatorInput, 2, 0);
 }
 
 MainWindow::~MainWindow()
