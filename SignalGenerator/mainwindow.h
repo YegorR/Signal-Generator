@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QGridLayout>
 
+#include <QTabWidget>
+
 #include "serverdatainput.h"
 #include "channeldatainput.h"
 #include "oscillatorinput.h"
@@ -28,6 +30,10 @@ private:
   ChannelDataInput* _channelDataInput;
   OscillatorInput* _oscillatorInput;
   SinusOscillatorInput* _sinusOscillatorInput;
+
+  QTabWidget* _tabWidget;
+  QWidget* _connectPage;  QGridLayout* _connectLayout;
+  QWidget* _oscillatorPage; QGridLayout* _oscillatorLayout;
 };
 
 #endif // MAINWINDOW_H
