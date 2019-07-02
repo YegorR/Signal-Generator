@@ -35,6 +35,7 @@ SOURCES += \
         oscillatorinput.cpp \
         serverdatainput.cpp \
         sinusoscillator.cpp \
+        sinusoscillatorinput.cpp \
         tcpclient.cpp
 
 HEADERS += \
@@ -49,6 +50,7 @@ HEADERS += \
         oscillatorinput.h \
         serverdatainput.h \
         sinusoscillator.h \
+        sinusoscillatorinput.h \
         tcpclient.h
 
 FORMS += \

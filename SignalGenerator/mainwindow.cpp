@@ -18,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
   _oscillatorInput = new OscillatorInput(this);
   _layout->addWidget(_oscillatorInput, 2, 0);
+
+  _sinusOscillatorInput = new SinusOscillatorInput(this);
+  _layout->addWidget(_sinusOscillatorInput, 3, 0);
 }
 
 MainWindow::~MainWindow()

@@ -7,6 +7,7 @@
 #include "serverdatainput.h"
 #include "channeldatainput.h"
 #include "oscillatorinput.h"
+#include "sinusoscillatorinput.h"
 
 namespace Ui {
   class MainWindow;
@@ -26,6 +27,7 @@ private:
   ServerDataInput* _serverDataInput;
   ChannelDataInput* _channelDataInput;
   OscillatorInput* _oscillatorInput;
+  SinusOscillatorInput* _sinusOscillatorInput;
 };
 
 #endif // MAINWINDOW_H
