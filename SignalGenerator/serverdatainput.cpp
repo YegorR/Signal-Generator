@@ -15,10 +15,20 @@ ServerDataInput::ServerDataInput(QWidget *parent) : QWidget(parent)
 
   _portValidator = new QIntValidator(1, 65535);
   _portInput->setValidator(_portValidator);
+
+  _connectButton = new QPushButton("Подключиться" , this);
+  _layout->addWidget(_connectButton);
+  QObject::connect(_connectButton, SIGNAL(clicked()), this, SLOT(connect()));
+
+  _stopButton = new QPushButton("Отключиться", this);
+  _layout->addWidget(_stopButton);
+  QObject::connect(_stopButton, SIGNAL(clicked()), this, SLOT(stop()));
+  _stopButton->setEnabled(false);
 }
 
 
 void ServerDataInput::connect() {
+  _connectButton->setEnabled(false);
   QString host = _hostInput->text().trimmed();
   if (host.isEmpty()) {
       return;
@@ -30,3 +40,9 @@ void ServerDataInput::connect() {
   quint16 port = static_cast<quint16>(portString.toInt());
   emit serverDataReceived(host, port);
 }
+
+void ServerDataInput::stop() {
+  _stopButton->setEnabled(false);
+  emit serverStopped();
+}
+

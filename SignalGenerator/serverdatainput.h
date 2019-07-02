@@ -6,6 +6,7 @@
 #include <QIntValidator>
 #include <QFormLayout>
 #include <QLabel>
+#include <QPushButton>
 
 class ServerDataInput : public QWidget
 {
@@ -17,13 +18,17 @@ private:
   QLabel* _portLabel;
   QIntValidator* _portValidator;
   QFormLayout* _layout;
+  QPushButton* _connectButton;
+  QPushButton* _stopButton;
 public:
   explicit ServerDataInput(QWidget *parent = nullptr);
 
 signals:
   void serverDataReceived(QString host, quint16 port);
-public slots:
+  void serverStopped();
+private slots:
   void connect();
+  void stop();
 };
 
 #endif // SERVERDATAINPUT_H
