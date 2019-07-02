@@ -22,6 +22,10 @@ OscillatorInput::OscillatorInput(QWidget *parent) : QWidget(parent)
   connect(_stopButton, SIGNAL(clicked()), this, SLOT(_stop()));
 
  _stopButton->setEnabled(false);
+
+ _validator = new QDoubleValidator(this);
+ _validator->setBottom(0);
+ _frequencyInput->setValidator(_validator);
 }
 
 void OscillatorInput::_start() {

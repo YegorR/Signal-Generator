@@ -8,6 +8,7 @@
 #include <QFormLayout>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QDoubleValidator>
 
 class OscillatorInput : public QWidget
 {
@@ -19,6 +20,7 @@ private:
   QLabel* _frequencyLabel; QLineEdit* _frequencyInput;
   QPushButton* _startButton;
   QPushButton* _stopButton;
+  QDoubleValidator* _validator;
 public:
   explicit OscillatorInput(QWidget *parent = nullptr);
 
