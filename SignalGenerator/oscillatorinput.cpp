@@ -10,7 +10,7 @@ OscillatorInput::OscillatorInput(QWidget *parent) : QWidget(parent)
   _globalLayout->addLayout(_buttonLayout);
 
   _frequencyLabel = new QLabel("Частота дискретизации", this);
-  _frequencyInput = new QLineEdit(this);
+  _frequencyInput = new QLineEdit("1000", this);
   _inputLayout->addRow(_frequencyLabel, _frequencyInput);
 
   _startButton = new QPushButton("Старт", this);

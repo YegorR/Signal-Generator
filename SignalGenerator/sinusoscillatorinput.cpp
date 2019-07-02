@@ -6,15 +6,15 @@ SinusOscillatorInput::SinusOscillatorInput(QWidget* parent) : QWidget(parent)
   this->setLayout(_layout);
 
   _phaseLabel = new QLabel("Фаза", this);
-  _phaseInput = new QLineEdit(this);
+  _phaseInput = new QLineEdit("0", this);
   _layout->addRow(_phaseLabel, _phaseInput);
 
   _frequencyLabel = new QLabel("Частота", this);
-  _frequencyInput = new QLineEdit(this);
+  _frequencyInput = new QLineEdit("100", this);
   _layout->addRow(_frequencyLabel, _frequencyInput);
 
   _amplitudeLabel = new QLabel("Амплитуда", this);
-  _amplitudeInput = new QLineEdit(this);
+  _amplitudeInput = new QLineEdit("15", this);
   _layout->addRow(_amplitudeLabel, _amplitudeInput);
 
   _validator = new QDoubleValidator(this);

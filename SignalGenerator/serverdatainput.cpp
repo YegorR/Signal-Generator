@@ -6,11 +6,11 @@ ServerDataInput::ServerDataInput(QWidget *parent) : QWidget(parent)
   this->setLayout(_layout);
 
   _hostLabel = new QLabel("Хост", this);
-  _hostInput = new QLineEdit(this);
+  _hostInput = new QLineEdit("localhost" , this);
   _layout->addRow(_hostLabel, _hostInput);
 
   _portLabel = new QLabel("Порт", this);
-  _portInput = new QLineEdit(this);
+  _portInput = new QLineEdit("30000", this);
   _layout->addRow(_portLabel, _portInput);
 
   _portValidator = new QIntValidator(1, 65535);
