@@ -10,7 +10,7 @@ struct ChannelAttributes {
   float divisionXValue;
   float divisionYValue;
   qint32  offsetX;
-  quint8 frameSize;
+  quint32 valuesCount;
 };
 
 #endif // CHANNELATTRIBUTES_H

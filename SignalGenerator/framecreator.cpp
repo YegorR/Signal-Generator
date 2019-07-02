@@ -32,7 +32,7 @@ void FrameCreator::receiveValue(double value) {
       frame = new Frame();
     }
   frame->points.push_front(QVariant(value));
-  if (frame->points.size() < _ch_attr.frameSize) {
+  if (frame->points.size() < _ch_attr.valuesCount) {
       return;
     }
 

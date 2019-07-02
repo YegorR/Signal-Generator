@@ -7,19 +7,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
   ui->setupUi(this);
   this->setFixedSize(this->geometry().width(), this->geometry().height());
-  ui->oscillatorTypeChoice->addItem("Синусоида");
 
-  QStringList channelAttributesHeaders;
-  channelAttributesHeaders.append("Имя канала");
-  channelAttributesHeaders.append("Единица измерения оси X");
-  channelAttributesHeaders.append("Единица измерения оси Y");
-  channelAttributesHeaders.append("Цена деления оси X");
-  channelAttributesHeaders.append("Цена деления оси Y");
-  channelAttributesHeaders.append("Смещение по оси X");
-  channelAttributesHeaders.append("Размер фрейма");
-  ui->channelAttributesTable->setVerticalHeaderLabels(channelAttributesHeaders);
+  _layout = new QGridLayout(ui->centralWidget);
+  ui->centralWidget->setLayout(_layout);
 
-  ui->sinusPhaseInput->setValidator();
+  _serverDataInput = new ServerDataInput(this);
+  _layout->addWidget(_serverDataInput, 0, 0);
+  _channelDataInput = new ChannelDataInput(this);
+  _layout->addWidget(_channelDataInput, 1, 0);
 }
 
 MainWindow::~MainWindow()

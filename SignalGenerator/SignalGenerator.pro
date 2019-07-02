@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        channeldatainput.cpp \
         client.cpp \
         framecreator.cpp \
         frameparser.cpp \
@@ -37,6 +38,7 @@ SOURCES += \
 
 HEADERS += \
         channelattributes.h \
+        channeldatainput.h \
         client.h \
         frame.h \
         framecreator.h \
