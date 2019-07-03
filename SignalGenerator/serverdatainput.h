@@ -22,7 +22,8 @@ private:
   QPushButton* _stopButton;
 public:
   explicit ServerDataInput(QWidget *parent = nullptr);
-
+  void setActive();
+  void setDisactive();
 signals:
   void serverDataReceived(QString host, quint16 port);
   void serverStopped();

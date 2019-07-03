@@ -10,6 +10,7 @@ void TcpClient::connectToHost() {
 }
 
 TcpClient::~TcpClient() {
+    disconnect(this);
    _socket.disconnectFromHost();
 }
 

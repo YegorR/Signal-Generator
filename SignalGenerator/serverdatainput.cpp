@@ -46,3 +46,13 @@ void ServerDataInput::stop() {
   emit serverStopped();
 }
 
+void ServerDataInput::setActive() {
+  _stopButton->setEnabled(false);
+  _connectButton->setEnabled(true);
+}
+
+void ServerDataInput::setDisactive() {
+  _stopButton->setEnabled(true);
+  _connectButton->setEnabled(false);
+}
+
