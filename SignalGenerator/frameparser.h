@@ -9,7 +9,7 @@ class FrameParser
 {
 public:
   FrameParser();
-  QByteArray parse(Frame*);
+  static  QByteArray parse(Frame*);
 };
 
 #endif // FRAMEPARSER_H

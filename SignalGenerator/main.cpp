@@ -1,9 +1,20 @@
-#include <iostream>
+#include <QString>
+#include <QDebug>
+#include <QCoreApplication>
 
-using namespace std;
-
-int main()
+#include "controller.h"
+int main(int argc, char* argv[])
 {
-  cout << "Здорово бандиты\n";
-  return 0;
+  QCoreApplication app(argc, argv);
+  if (argc == 1) {
+      qCritical() << QString("Input config file name\n");
+      return 0;
+    }
+  QString filename(argv[1]);
+
+  Controller* controller = new Controller(filename);
+  controller->run();
+
+  delete controller;
+  return app.exec();
 }
