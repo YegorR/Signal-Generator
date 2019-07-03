@@ -4,9 +4,10 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core
+QT       += xml
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network
+greaterThan(QT_MAJOR_VERSION, 4): QT += network
 
 TARGET = SignalGenerator
 TEMPLATE = app
@@ -23,14 +24,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 CONFIG += c++11
+CONFIG += console
 
 SOURCES += \
         channeldatainput.cpp \
         client.cpp \
+        configreader.cpp \
+        controller.cpp \
         framecreator.cpp \
         frameparser.cpp \
         main.cpp \
-        mainwindow.cpp \
         oscillator.cpp \
         oscillatorinput.cpp \
         serverdatainput.cpp \
@@ -42,10 +45,11 @@ HEADERS += \
         channelattributes.h \
         channeldatainput.h \
         client.h \
+        configreader.h \
+        controller.h \
         frame.h \
         framecreator.h \
         frameparser.h \
-        mainwindow.h \
         oscillator.h \
         oscillatorinput.h \
         serverdatainput.h \
@@ -53,8 +57,6 @@ HEADERS += \
         sinusoscillatorinput.h \
         tcpclient.h
 
-FORMS += \
-        mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

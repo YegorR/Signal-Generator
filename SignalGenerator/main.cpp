@@ -1,11 +1,20 @@
-#include "mainwindow.h"
-#include <QApplication>
+#include <QString>
+#include <QDebug>
+#include <QCoreApplication>
 
-int main(int argc, char *argv[])
+#include "controller.h"
+int main(int argc, char* argv[])
 {
-  QApplication a(argc, argv);
-  MainWindow w;
-  w.show();
+  QCoreApplication app(argc, argv);
+  if (argc == 1) {
+      qCritical() << QString("Input config file name\n");
+      return 0;
+    }
+  QString filename(argv[1]);
 
-  return a.exec();
+  Controller* controller = new Controller(filename);
+  controller->run();
+
+  delete controller;
+  return app.exec();
 }

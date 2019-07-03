@@ -45,7 +45,8 @@ void FrameCreator::receiveValue(double value) {
   frame->divisionXValue = _ch_attr.divisionXValue;
   frame->divisionYValue = _ch_attr.divisionYValue;
   frame->channelName = _ch_attr.channelName;
-  frame->offsetX = _ch_attr.offsetX;
+  //frame->offsetX = _ch_attr.offsetX;
+  frame->offsetX = 0;
   frame->xMeasure = _ch_attr.xMeasure;
   frame->yMeasure = _ch_attr.yMeasure;
 
