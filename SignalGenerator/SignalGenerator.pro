@@ -28,6 +28,7 @@ CONFIG += console
 
 SOURCES += \
         client.cpp \
+        configreader.cpp \
         framecreator.cpp \
         frameparser.cpp \
         main.cpp \
@@ -38,6 +39,7 @@ SOURCES += \
 HEADERS += \
         channelattributes.h \
         client.h \
+        configreader.h \
         frame.h \
         framecreator.h \
         frameparser.h \
