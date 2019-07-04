@@ -17,10 +17,11 @@ private:
   Client* _client;
 public:
   explicit Controller(QString filename, QObject *parent = nullptr);
-  void run();
 private slots:
   void receiveFrame(Frame*);
   void handleError(QAbstractSocket::SocketError);
+public slots:
+  void run();
 };
 
 #endif // CONTROLLER_H

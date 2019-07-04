@@ -1,6 +1,7 @@
 #include <QString>
 #include <QDebug>
 #include <QCoreApplication>
+#include <QTimer>
 
 #include "controller.h"
 int main(int argc, char* argv[])
@@ -12,9 +13,9 @@ int main(int argc, char* argv[])
     }
   QString filename(argv[1]);
 
-  Controller* controller = new Controller(filename);
-  controller->run();
+  Controller* controller = new Controller(filename, &app);
 
-  delete controller;
+  QTimer::singleShot(0, controller, SLOT(run()));
+
   return app.exec();
 }

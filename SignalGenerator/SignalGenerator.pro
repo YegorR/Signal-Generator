@@ -27,7 +27,6 @@ CONFIG += c++11
 CONFIG += console
 
 SOURCES += \
-        channeldatainput.cpp \
         client.cpp \
         configreader.cpp \
         controller.cpp \
@@ -35,15 +34,11 @@ SOURCES += \
         frameparser.cpp \
         main.cpp \
         oscillator.cpp \
-        oscillatorinput.cpp \
-        serverdatainput.cpp \
         sinusoscillator.cpp \
-        sinusoscillatorinput.cpp \
         tcpclient.cpp
 
 HEADERS += \
         channelattributes.h \
-        channeldatainput.h \
         client.h \
         configreader.h \
         controller.h \
@@ -51,10 +46,7 @@ HEADERS += \
         framecreator.h \
         frameparser.h \
         oscillator.h \
-        oscillatorinput.h \
-        serverdatainput.h \
         sinusoscillator.h \
-        sinusoscillatorinput.h \
         tcpclient.h
 
 
