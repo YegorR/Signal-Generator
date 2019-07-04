@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+	<channel_name>TestChannel</channel_name>
+	<x_measure>C</x_measure>
+	<y_measuse>B</y_measuse>
+	<division_x_value>0,01</division_x_value>
+	<division_y_value>1</division_y_value>
+	<values_count>100</values_count>
+	<host>localhost</host>
+	<port>9999</port>
+	<sampling_frequency>100</sampling_frequency>
+	<sinus_oscillator>
+		<phase>0</phase>
+		<frequency>1</frequency>
+		<amplitude>10</amplitude>
+	</sinus_oscillator>
+</config>
