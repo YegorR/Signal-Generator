@@ -37,10 +37,12 @@ QByteArray FrameParser::parse(Frame* frame) {
   else {
       stream << frame->pointSize;
     }
+   stream.setByteOrder(QDataStream::LittleEndian);
 
   for(int i = 0; i < frame->points.size();i++) {
       stream << frame->points.at(i).toDouble();
       //stream << static_cast<double>(i);
+      //stream << static_cast<quint32>(i);
     }
 
   stream.device()->seek(0);

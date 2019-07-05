@@ -30,7 +30,6 @@ SOURCES += \
         client.cpp \
         configreader.cpp \
         controller.cpp \
-        fileoscillator.cpp \
         framecreator.cpp \
         frameparser.cpp \
         main.cpp \
@@ -43,7 +42,6 @@ HEADERS += \
         client.h \
         configreader.h \
         controller.h \
-        fileoscillator.h \
         frame.h \
         framecreator.h \
         frameparser.h \
