@@ -3,6 +3,8 @@
 #include <QIODevice>
 #include <QDataStream>
 
+#include <QDebug>
+
 void writeString(QDataStream&, QString&);
 
 FrameParser::FrameParser()
@@ -23,10 +25,11 @@ QByteArray FrameParser::parse(Frame* frame) {
   stream << frame->divisionXValue;
   stream << frame->divisionYValue;
   stream << static_cast<quint32>(frame->points.size());
+  stream << static_cast<quint32>(0);  //Заглушка
   stream << frame->time;
   stream << static_cast<quint8>(0);
-  stream << static_cast<quint8>(frame->isComplex);
-  stream << static_cast<quint8>(frame->isFloat);
+  frame->isComplex ? stream << static_cast<quint8>(1) : stream << static_cast<quint8>(0);
+  frame->isFloat ? stream << static_cast<quint8>(1) : stream << static_cast<quint8>(0);
 
   if (frame->isComplex) {
       stream << static_cast<quint8>(frame->pointSize / 2);
@@ -35,11 +38,9 @@ QByteArray FrameParser::parse(Frame* frame) {
       stream << frame->pointSize;
     }
 
-  for(int i = 0; i < frame->points.size(); frame->isComplex? i = i + 2 : i++) {
-      stream << frame->points.at(i);
-      if (frame->isComplex) {
-          stream << frame->points.at(i + 1);
-        }
+  for(int i = 0; i < frame->points.size();i++) {
+      stream << frame->points.at(i).toDouble();
+      //stream << static_cast<double>(i);
     }
 
   stream.device()->seek(0);
@@ -50,8 +51,12 @@ QByteArray FrameParser::parse(Frame* frame) {
 
 void writeString(QDataStream& stream, QString& string) {
   int size = string.size();
+  QByteArray byteArray = string.toUtf8();
+  //qDebug() << size << byteArray << byteArray.toHex();
   stream << static_cast<quint8>(size);
-  stream << string;
+  for (int i = 0; i < byteArray.size(); ++i) {
+      stream << static_cast<quint8>(byteArray.at(i));
+    }
   if ((size + 1) % 4 == 0) {
       return;
     }

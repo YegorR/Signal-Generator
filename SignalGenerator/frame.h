@@ -20,6 +20,7 @@ struct Frame {
     quint8 pointSize;
 
     QVector <QVariant> points;
+    //QVector <double> points;
 };
 
 #endif // FRAME_H

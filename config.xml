@@ -2,12 +2,12 @@
 <config>
 	<channel_name>TestChannel</channel_name>
 	<x_measure>C</x_measure>
-	<y_measuse>B</y_measuse>
-	<division_x_value>0,01</division_x_value>
+	<y_measure>V</y_measure>
+	<division_x_value>1</division_x_value>
 	<division_y_value>1</division_y_value>
 	<values_count>100</values_count>
-	<host>localhost</host>
-	<port>9999</port>
+	<host>192.168.1.118</host>
+	<port>8080</port>
 	<sampling_frequency>100</sampling_frequency>
 	<sinus_oscillator>
 		<phase>0</phase>

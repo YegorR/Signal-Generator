@@ -1,5 +1,7 @@
 #include "framecreator.h"
 
+#include <QDebug>
+
 FrameCreator::FrameCreator(ChannelAttributes ch_attr, QObject *parent) : QObject(parent),
   _ch_attr(ch_attr)
 {
@@ -27,17 +29,18 @@ void FrameCreator::setChannelAttributes(ChannelAttributes ch_attr) {
 
 void FrameCreator::receiveValue(double value) {
   static Frame* frame = nullptr;
-
-  if (frame == nullptr) {
+  static bool isSend = true;
+  if (isSend) {
       frame = new Frame();
+      isSend = false;
     }
-  frame->points.push_front(QVariant(value));
-  if (frame->points.size() < _ch_attr.valuesCount) {
+  frame->points.push_back(QVariant(value));
+  if (frame->points.size() < static_cast<int>(_ch_attr.valuesCount)) {
       return;
     }
 
-  frame->time = 0;          //Заглушка
-  frame->frameNumber = 0;   //Заглушка
+  frame->time = 1;          //Заглушка
+  frame->frameNumber = 10;   //Заглушка
   frame->isFloat = true;    //Заглушка
   frame->isComplex = false; //Заглушка
   frame->pointSize = 8;     //Заглушка
@@ -50,6 +53,7 @@ void FrameCreator::receiveValue(double value) {
   frame->xMeasure = _ch_attr.xMeasure;
   frame->yMeasure = _ch_attr.yMeasure;
 
+  qDebug() << "frame is created";
   emit generated(frame);
-  delete frame;
+  isSend = true;
 }
