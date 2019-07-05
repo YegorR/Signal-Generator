@@ -27,7 +27,7 @@ QByteArray FrameParser::parse(Frame* frame) {
   stream << frame->divisionXValue;
   stream << frame->divisionYValue;
   stream << static_cast<quint32>(frame->points.size());
-  stream << static_cast<quint32>(0);  //Заглушка
+  stream << static_cast<quint32>(frame->offsetX);
   stream << frame->time;
   stream << static_cast<quint8>(0);
   frame->isComplex ? stream << static_cast<quint8>(1) : stream << static_cast<quint8>(0);
