@@ -9,8 +9,11 @@ struct ChannelAttributes {
   QString yMeasure;
   float divisionXValue;
   float divisionYValue;
-  qint32  offsetX;
+  qint32  offsetX = 0;
   quint32 valuesCount;
+  bool isFloat = false;
+  bool isComplex = false;
+  quint8 pointSize = 4;
 };
 
 #endif // CHANNELATTRIBUTES_H

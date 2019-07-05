@@ -16,7 +16,7 @@ void SinusOscillator::_generate()
       QThread::msleep(samplingPeriod);
       time += static_cast<double>(samplingPeriod) / 1000;
       double value = _amplitude * qSin(_phase + time * _sinusFrequency * 2 * M_PI);
-      qDebug() << "SinusOscillator generated value:" << value;
+      //qDebug() << "SinusOscillator generated value:" << value;
       //qDebug() << "time" << time;
       emit generated(value);
     }

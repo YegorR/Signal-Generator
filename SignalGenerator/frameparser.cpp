@@ -6,6 +6,8 @@
 #include <QDebug>
 
 void writeString(QDataStream&, QString&);
+void defineType(QDataStream& stream, Frame* frame);
+template <typename T> void writeValues(QDataStream& stream, Frame* frame);
 
 FrameParser::FrameParser()
 {
@@ -39,11 +41,7 @@ QByteArray FrameParser::parse(Frame* frame) {
     }
    stream.setByteOrder(QDataStream::LittleEndian);
 
-  for(int i = 0; i < frame->points.size();i++) {
-      stream << frame->points.at(i).toDouble();
-      //stream << static_cast<double>(i);
-      //stream << static_cast<quint32>(i);
-    }
+  defineType(stream, frame);
 
   stream.device()->seek(0);
   stream << static_cast<quint32>(data.size());
@@ -54,7 +52,6 @@ QByteArray FrameParser::parse(Frame* frame) {
 void writeString(QDataStream& stream, QString& string) {
   int size = string.size();
   QByteArray byteArray = string.toUtf8();
-  //qDebug() << size << byteArray << byteArray.toHex();
   stream << static_cast<quint8>(size);
   for (int i = 0; i < byteArray.size(); ++i) {
       stream << static_cast<quint8>(byteArray.at(i));
@@ -64,5 +61,37 @@ void writeString(QDataStream& stream, QString& string) {
     }
   for (int i = 0; i < 4 - ((size + 1) % 4); ++i) {
       stream << static_cast<quint8>(0);
+    }
+}
+
+void defineType(QDataStream& stream, Frame* frame) {
+  if (frame->isFloat == true) {
+      if (frame->pointSize == 4) {
+          writeValues<float>(stream, frame);
+        }
+      else if (frame->pointSize == 8) {
+          writeValues<double>(stream, frame);
+        }
+    }
+  else {
+      if (frame->pointSize == 1) {
+          writeValues<quint8>(stream, frame);
+        }
+      else if (frame->pointSize == 2) {
+          writeValues<quint16>(stream, frame);
+        }
+      else if (frame->pointSize == 4) {
+          writeValues<quint32>(stream, frame);
+        }
+      else if (frame->pointSize == 8) {
+          writeValues<quint64>(stream, frame);
+        }
+    }
+}
+
+template<typename T>
+void writeValues(QDataStream& stream, Frame* frame) {
+  for(int i = 0; i < frame->points.size();i++) {
+      stream << static_cast<T>(frame->points.at(i).toDouble());
     }
 }

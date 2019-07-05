@@ -41,9 +41,9 @@ void FrameCreator::receiveValue(double value) {
 
   frame->time = 1;          //Заглушка
   frame->frameNumber = 10;   //Заглушка
-  frame->isFloat = true;    //Заглушка
-  frame->isComplex = false; //Заглушка
-  frame->pointSize = 8;     //Заглушка
+  frame->isFloat = _ch_attr.isFloat;
+  frame->isComplex = _ch_attr.isComplex;
+  frame->pointSize = _ch_attr.pointSize;
 
   frame->divisionXValue = _ch_attr.divisionXValue;
   frame->divisionYValue = _ch_attr.divisionYValue;

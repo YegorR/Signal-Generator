@@ -7,6 +7,8 @@
 
 #include <QDebug>
 
+void setType(QString type, ChannelAttributes& ch_attr);
+
 Controller::Controller(QString filename, QObject *parent) : QObject(parent), _filename(filename)
 {
 
@@ -38,6 +40,8 @@ void Controller::run() {
   ch_attr.divisionYValue = configReader.value("config/division_y_value").toFloat();
   ch_attr.valuesCount = static_cast<quint32>(configReader.value("config/values_count").toInt());
 
+  setType(configReader.value("config/type"), ch_attr);
+
   _frameCreator = new FrameCreator(ch_attr, this);
   _frameCreator->setOscillator(_sinusOscillator);
 
@@ -60,4 +64,27 @@ void Controller::receiveFrame(Frame* frame) {
 
 void Controller::handleError(QAbstractSocket::SocketError error) {
   qCritical() << "Socket error:" << error;
+}
+
+
+void setType(QString type, ChannelAttributes& ch_attr) {
+  if (type == "float") {
+      ch_attr.isFloat = true;
+      ch_attr.pointSize = 4;
+    } else if (type == "double") {
+      ch_attr.isFloat = true;
+      ch_attr.pointSize = 8;
+    } else if (type == "int8") {
+      ch_attr.isFloat = false;
+      ch_attr.pointSize = 1;
+    } else if (type == "int16") {
+      ch_attr.isFloat = false;
+      ch_attr.pointSize = 2;
+    } else if (type == "int32") {
+      ch_attr.isFloat = false;
+      ch_attr.pointSize = 4;
+    } else if (type == "int64") {
+      ch_attr.isFloat = false;
+      ch_attr.pointSize = 8;
+    }
 }

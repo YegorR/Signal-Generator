@@ -9,6 +9,8 @@
 	<host>192.168.1.118</host>
 	<port>8080</port>
 	<sampling_frequency>100</sampling_frequency>
+	<type>double</type>
+	<complex>false</complex>
 	<sinus_oscillator>
 		<phase>0</phase>
 		<frequency>1</frequency>
