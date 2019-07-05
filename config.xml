@@ -15,5 +15,7 @@
 		<phase>0</phase>
 		<frequency>1</frequency>
 		<amplitude>10</amplitude>
+		<delta_phase>5</delta_phase>
+		<delta_period>100</delta_period>
 	</sinus_oscillator>
 </config>

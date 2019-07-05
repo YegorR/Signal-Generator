@@ -7,15 +7,17 @@
 class SinusOscillator : public Oscillator
 {
 private:
-  const double _phase;
+  double _phase;
   const double _sinusFrequency;
   const double _amplitude;
-
+  const double _deltaPhase;
+  const double _deltaPeriod;
   bool _is_stopped = true;
 
   void _generate();
 public:
-  SinusOscillator(double phase, double frequency, double amplitude, QObject* parent = nullptr);
+  SinusOscillator(double phase, double frequency, double amplitude,
+                  double deltaPhase, uint deltaPeriod, QObject* parent = nullptr);
   void start();
   void stop();
 };

@@ -26,10 +26,10 @@ void Controller::run() {
   double frequency = configReader.value("config/sinus_oscillator/frequency").toDouble();
   double amplitude = configReader.value("config/sinus_oscillator/amplitude").toDouble();
   double sampling = configReader.value("config/sampling_frequency").toDouble();
+  double deltaPhase = configReader.value("config/sinus_oscillator/delta_phase").toDouble();
+  uint deltaPeriod = configReader.value("config/sinus_oscillator/delta_period").toUInt();
 
-  qInfo() << "Sinus Oscillator: phase=" << phase << "frequency=" << frequency <<
-             "amplitude="<< amplitude << "sampling=" << sampling;
-  _sinusOscillator = new SinusOscillator(phase, frequency, amplitude, this);
+  _sinusOscillator = new SinusOscillator(phase, frequency, amplitude, deltaPhase, deltaPeriod, this);
   _sinusOscillator->setFrequency(sampling);
 
   ChannelAttributes ch_attr;

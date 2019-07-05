@@ -2,8 +2,10 @@
 #include <QThread>
 #include <QtMath>
 #include <QDebug>
-SinusOscillator::SinusOscillator(double phase, double frequency, double amplitude, QObject* parent) :
-  Oscillator(parent), _phase(phase), _sinusFrequency(frequency), _amplitude(amplitude)
+SinusOscillator::SinusOscillator(double phase, double frequency, double amplitude,
+                                 double deltaPhase, uint deltaPeriod, QObject* parent) :
+  Oscillator(parent), _phase(phase), _sinusFrequency(frequency), _amplitude(amplitude),
+  _deltaPhase(deltaPhase), _deltaPeriod(deltaPeriod)
 {
 
 }
@@ -11,6 +13,7 @@ SinusOscillator::SinusOscillator(double phase, double frequency, double amplitud
 void SinusOscillator::_generate()
 {
   double time = 0;
+  uint counter = 0;
   while (!_is_stopped) {
       unsigned long samplingPeriod = static_cast<unsigned long>(1 / frequency() * 1000);
       QThread::msleep(samplingPeriod);
@@ -19,6 +22,11 @@ void SinusOscillator::_generate()
       //qDebug() << "SinusOscillator generated value:" << value;
       //qDebug() << "time" << time;
       emit generated(value);
+      counter++;
+      if (counter >= _deltaPeriod) {
+          counter = 0;
+          _phase += _deltaPhase;
+        }
     }
 }
 
