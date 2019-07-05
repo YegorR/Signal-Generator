@@ -36,7 +36,7 @@ void Controller::run() {
   ch_attr.yMeasure = configReader.value("config/y_measure");
   ch_attr.divisionXValue = configReader.value("config/division_x_value").toFloat();
   ch_attr.divisionYValue = configReader.value("config/division_y_value").toFloat();
-  ch_attr.valuesCount = static_cast<quint8>(configReader.value("config/values_coint").toInt());
+  ch_attr.valuesCount = static_cast<quint32>(configReader.value("config/values_count").toInt());
 
   _frameCreator = new FrameCreator(ch_attr, this);
   _frameCreator->setOscillator(_sinusOscillator);
@@ -48,9 +48,11 @@ void Controller::run() {
   connect(_client, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(handleError(QAbstractSocket::SocketError)));
   connect(_frameCreator, SIGNAL(generated(Frame*)), this, SLOT(receiveFrame(Frame*)));
   _client->connectToHost();
+  _sinusOscillator->start();
 }
 
 void Controller::receiveFrame(Frame* frame) {
+  qDebug()  << "Frame is received";
   QByteArray data = FrameParser::parse(frame);
   _client->send(data);
   delete frame;
