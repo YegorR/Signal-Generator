@@ -7,10 +7,11 @@ struct ChannelAttributes {
   QString channelName;
   QString xMeasure;
   QString yMeasure;
-  float divisionXValue;
-  float divisionYValue;
+  float divisionXValue = 1;
+  float divisionYValue = 1;
   qint32  offsetX = 0;
-  quint32 valuesCount;
+  quint32 valuesCount = 100;
+  quint32 frameValuesCount = 100;
   bool isFloat = false;
   bool isComplex = false;
   quint8 pointSize = 4;

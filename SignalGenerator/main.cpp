@@ -13,9 +13,7 @@ int main(int argc, char* argv[])
     }
   QString filename(argv[1]);
 
-  Controller* controller = new Controller(filename, &app);
-  qDebug() << sizeof(float);
-  QTimer::singleShot(0, controller, SLOT(run()));
+  Controller* controller = new Controller(filename, &app);  QTimer::singleShot(0, controller, SLOT(run()));
 
   return app.exec();
 }

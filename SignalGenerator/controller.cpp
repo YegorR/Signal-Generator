@@ -8,6 +8,7 @@
 #include <QDebug>
 
 void setType(QString type, ChannelAttributes& ch_attr);
+void setChannelAttributes(ConfigReader& configReader, ChannelAttributes& ch_attr);
 
 Controller::Controller(QString filename, QObject *parent) : QObject(parent), _filename(filename)
 {
@@ -33,14 +34,7 @@ void Controller::run() {
   _sinusOscillator->setFrequency(sampling);
 
   ChannelAttributes ch_attr;
-  ch_attr.channelName = configReader.value("config/channel_name");
-  ch_attr.xMeasure = configReader.value("config/x_measure");
-  ch_attr.yMeasure = configReader.value("config/y_measure");
-  ch_attr.divisionXValue = configReader.value("config/division_x_value").toFloat();
-  ch_attr.divisionYValue = configReader.value("config/division_y_value").toFloat();
-  ch_attr.valuesCount = static_cast<quint32>(configReader.value("config/values_count").toInt());
-
-  setType(configReader.value("config/type"), ch_attr);
+  setChannelAttributes(configReader, ch_attr);
 
   _frameCreator = new FrameCreator(ch_attr, this);
   _frameCreator->setOscillator(_sinusOscillator);
@@ -87,4 +81,20 @@ void setType(QString type, ChannelAttributes& ch_attr) {
       ch_attr.isFloat = false;
       ch_attr.pointSize = 8;
     }
+}
+
+
+void setChannelAttributes(ConfigReader& configReader, ChannelAttributes& ch_attr) {
+  ch_attr.channelName = configReader.value("config/channel_name");
+  ch_attr.xMeasure = configReader.value("config/x_measure");
+  ch_attr.yMeasure = configReader.value("config/y_measure");
+  ch_attr.divisionXValue = configReader.value("config/division_x_value").toFloat();
+  qDebug() << ch_attr.divisionXValue;
+  ch_attr.divisionYValue = configReader.value("config/division_y_value").toFloat();
+  ch_attr.valuesCount = static_cast<quint32>(configReader.value("config/values_count").toInt());
+  ch_attr.frameValuesCount = static_cast<quint32>(configReader.
+                                                  value("config/frame_values_count").toInt());
+  ch_attr.offsetX = static_cast<qint32>(configReader.value("config/offset_x").toInt());
+
+  setType(configReader.value("config/type"), ch_attr);
 }
