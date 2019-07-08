@@ -22,16 +22,18 @@ void Controller::run() {
       return;
     }
 
+  unsigned long milliSampling = configReader.value("config/sampling_period_milli").toULong();
+  unsigned long nanoSampling = configReader.value("config/sampling_period_nano").toULong();
 
   double phase = configReader.value("config/sinus_oscillator/phase").toDouble();
   double frequency = configReader.value("config/sinus_oscillator/frequency").toDouble();
   double amplitude = configReader.value("config/sinus_oscillator/amplitude").toDouble();
-  double sampling = configReader.value("config/sampling_frequency").toDouble();
   double deltaPhase = configReader.value("config/sinus_oscillator/delta_phase").toDouble();
   uint deltaPeriod = configReader.value("config/sinus_oscillator/delta_period").toUInt();
 
   _sinusOscillator = new SinusOscillator(phase, frequency, amplitude, deltaPhase, deltaPeriod, this);
-  _sinusOscillator->setFrequency(sampling);
+  _sinusOscillator->setMilliPeriod(milliSampling);
+  _sinusOscillator->setNanoPeriod(nanoSampling);
 
   ChannelAttributes ch_attr;
   setChannelAttributes(configReader, ch_attr);

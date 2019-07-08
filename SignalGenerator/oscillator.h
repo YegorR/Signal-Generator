@@ -6,13 +6,16 @@
 class Oscillator : public QObject {
   Q_OBJECT
 private:
-  double _frequency = 50;
+  unsigned long _milliPeriod = 500;
+  unsigned long _nanoPeriod = 0;
 public:
   Oscillator(QObject* parent = nullptr);
   virtual void start() = 0;
   virtual void stop() = 0;
-  double frequency();
-  void setFrequency(double frequency);
+  unsigned long milliPeriod();
+  unsigned long nanoPeriod();
+  void setMilliPeriod(unsigned long milliPeriod);
+  void setNanoPeriod(unsigned long nanoPeriod);
 signals:
   void generated(double);
 };

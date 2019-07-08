@@ -5,10 +5,18 @@ Oscillator::Oscillator(QObject* parent) : QObject (parent)
 
 }
 
-double Oscillator::frequency() {
-  return _frequency;
+unsigned long Oscillator::milliPeriod() {
+  return _milliPeriod;
 }
 
-void Oscillator::setFrequency(double frequency) {
-  _frequency = frequency;
+unsigned long Oscillator::nanoPeriod() {
+  return _nanoPeriod;
+}
+
+void Oscillator::setMilliPeriod(unsigned long milliPeriod) {
+  _milliPeriod = milliPeriod;
+}
+
+void Oscillator::setNanoPeriod(unsigned long nanoPeriod) {
+  _nanoPeriod = nanoPeriod;
 }
