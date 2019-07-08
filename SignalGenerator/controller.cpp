@@ -38,7 +38,10 @@ void Controller::run() {
   ChannelAttributes ch_attr;
   setChannelAttributes(configReader, ch_attr);
 
-  _frameCreator = new FrameCreator(ch_attr, this);
+  QString random = configReader.value("config/random_frame_order");
+  bool is_random = (random == "true") ? true : false;
+
+  _frameCreator = new FrameCreator(ch_attr, is_random, this);
   _frameCreator->setOscillator(_sinusOscillator);
 
   QString host = configReader.value("config/host");

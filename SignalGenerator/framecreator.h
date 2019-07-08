@@ -14,8 +14,9 @@ private:
   Oscillator* _oscillator = nullptr;
   ChannelAttributes _ch_attr;
   Frame* frame = nullptr;
+  bool _is_random;
 public:
-  explicit FrameCreator(ChannelAttributes ch_attr ,QObject *parent = nullptr);
+  explicit FrameCreator(ChannelAttributes ch_attr, bool isRandom = false, QObject *parent = nullptr);
   void setOscillator(Oscillator* oscillator);
   void setChannelAttributes(ChannelAttributes ch_attr);
 signals:

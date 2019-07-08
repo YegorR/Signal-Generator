@@ -6,19 +6,19 @@
 	<division_x_value>1</division_x_value>
 	<division_y_value>1</division_y_value>
 	<frame_values_count>100</frame_values_count>
-	<values_count>100</values_count>
+	<values_count>1000</values_count>
 	<offset_x>0</offset_x>
 	<random_frame_order>true</random_frame_order>
 	<host>192.168.1.118</host>
 	<port>8080</port>
-	<sampling_period_milli>0</sampling_period_milli>
-	<sampling_period_nano>1000</sampling_period_nano>
+	<sampling_period_milli>10</sampling_period_milli>
+	<sampling_period_nano>0</sampling_period_nano>
 	<type>double</type>
 	<complex>false</complex>
 	<sinus_oscillator>
 		<phase>0</phase>
 		<frequency>1</frequency>
-		<amplitude>100</amplitude>
+		<amplitude>10</amplitude>
 		<delta_phase>5</delta_phase>
 		<delta_period>1000</delta_period>
 	</sinus_oscillator>

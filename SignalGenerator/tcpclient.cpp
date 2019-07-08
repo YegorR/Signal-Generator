@@ -23,8 +23,7 @@ TcpClient::~TcpClient() {
 }
 
 void TcpClient::send(QByteArray& data) {
-  //qDebug() << data.toHex();
-  debugData(data);
+  //debugData(data);
   _socket.write(data);
   _socket.flush();
 }

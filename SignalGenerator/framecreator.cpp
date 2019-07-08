@@ -1,9 +1,11 @@
 #include "framecreator.h"
 
 #include <QDebug>
+#include <QRandomGenerator>
+#include <QDateTime>
 
-FrameCreator::FrameCreator(ChannelAttributes ch_attr, QObject *parent) : QObject(parent),
-  _ch_attr(ch_attr)
+FrameCreator::FrameCreator(ChannelAttributes ch_attr, bool isRandom, QObject *parent) : QObject(parent),
+  _ch_attr(ch_attr), _is_random(isRandom)
 {
 
 }
@@ -33,6 +35,8 @@ void FrameCreator::receiveValue(double value) {
   static quint8 frameNumber = 0;
   static qint32 frameValuesCounter = 0;
   static bool isSend = true;
+  static QVector<Frame*> frameContainer;
+  static QRandomGenerator randGenerator(static_cast<quint32>(QDateTime::currentSecsSinceEpoch()));
   if (isSend) {
       frame = new Frame();
       frame->time = time;
@@ -55,12 +59,25 @@ void FrameCreator::receiveValue(double value) {
   frame->xMeasure = _ch_attr.xMeasure;
   frame->yMeasure = _ch_attr.yMeasure;
 
-  qDebug() << "frame is created";
-  emit generated(frame);
+
+  if (_is_random) {
+    frameContainer.push_back(frame);
+    } else {
+      emit generated(frame);
+    }
+
   isSend = true;
   frameValuesCounter = frameValuesCounter + static_cast<qint32>(_ch_attr.frameValuesCount);
   if (frameValuesCounter >= static_cast<qint32>(_ch_attr.valuesCount)) {
       frameValuesCounter = 0;
       time++;
+      if (_is_random) {
+          while (!frameContainer.isEmpty()) {
+              Frame* randomFrame = frameContainer.takeAt(randGenerator.
+                                                         bounded(frameContainer.size()));
+              qDebug() << "time" << randomFrame->time << "offsetX" << randomFrame->offsetX;
+              emit generated(randomFrame);
+            }
+        }
     }
 }
