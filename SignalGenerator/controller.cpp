@@ -59,7 +59,6 @@ void Controller::receiveFrame(Frame* frame) {
   qDebug()  << "Frame is received";
   QByteArray data = FrameParser::parse(frame);
   _client->send(data);
-  QThread::sleep(1);
   delete frame;
 }
 
@@ -103,5 +102,6 @@ void setChannelAttributes(ConfigReader& configReader, ChannelAttributes& ch_attr
                                                   value("config/frame_values_count").toInt());
   ch_attr.offsetX = static_cast<qint32>(configReader.value("config/offset_x").toInt());
 
+  ch_attr.isComplex = (configReader.value("config/complex") == "true");
   setType(configReader.value("config/type"), ch_attr);
 }

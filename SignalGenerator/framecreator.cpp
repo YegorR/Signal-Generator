@@ -43,7 +43,10 @@ void FrameCreator::receiveValue(double value) {
       isSend = false;
     }
   frame->points.push_back(QVariant(value));
-  if (frame->points.size() < static_cast<int>(_ch_attr.frameValuesCount)) {
+  if (_ch_attr.isComplex) {
+      frame->points.push_back(QVariant(-value));
+    }
+  if (frame->points.size() < static_cast<int>(_ch_attr.frameValuesCount) * (_ch_attr.isComplex? 2 : 1)) {
       return;
     }
 
