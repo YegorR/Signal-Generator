@@ -1,5 +1,6 @@
 #include "tcpclient.h"
 #include <QDebug>
+#include <QMutex>
 
 void debugData(QByteArray data);
 
@@ -23,9 +24,11 @@ TcpClient::~TcpClient() {
 }
 
 void TcpClient::send(QByteArray& data) {
-  //debugData(data);
+  static QMutex mutex;
+  mutex.lock();
   _socket.write(data);
   _socket.flush();
+  mutex.unlock();
 }
 
 
