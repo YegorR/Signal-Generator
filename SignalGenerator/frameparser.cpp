@@ -17,6 +17,7 @@ FrameParser::FrameParser()
 QByteArray FrameParser::parse(Frame* frame) {
   QByteArray data;
   QDataStream stream(&data, QIODevice::WriteOnly);
+  stream.setByteOrder(QDataStream::LittleEndian);
   stream << static_cast<quint32>(0) << static_cast<quint32>(0) << static_cast<quint16>(0);
   stream << frame->frameNumber;
   stream << static_cast<quint8>(1);
