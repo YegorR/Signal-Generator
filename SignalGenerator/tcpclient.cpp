@@ -24,11 +24,8 @@ TcpClient::~TcpClient() {
 }
 
 void TcpClient::send(QByteArray& data) {
-  static QMutex mutex;
-  mutex.lock();
   _socket.write(data);
   _socket.flush();
-  mutex.unlock();
 }
 
 

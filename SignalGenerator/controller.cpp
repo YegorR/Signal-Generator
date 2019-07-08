@@ -6,6 +6,7 @@
 #include "frameparser.h"
 
 #include <QDebug>
+#include <QThread>
 
 void setType(QString type, ChannelAttributes& ch_attr);
 void setChannelAttributes(ConfigReader& configReader, ChannelAttributes& ch_attr);
@@ -58,6 +59,7 @@ void Controller::receiveFrame(Frame* frame) {
   qDebug()  << "Frame is received";
   QByteArray data = FrameParser::parse(frame);
   _client->send(data);
+  QThread::sleep(1);
   delete frame;
 }
 
