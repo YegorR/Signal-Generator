@@ -25,6 +25,7 @@ QByteArray FrameParser::parse(Frame* frame) {
   writeString(stream, frame->xMeasure);
   writeString(stream, frame->yMeasure);
 
+  stream.setFloatingPointPrecision(QDataStream::FloatingPointPrecision::SinglePrecision);
   stream << frame->divisionXValue;
   stream << frame->divisionYValue;
   stream << static_cast<quint32>(frame->isComplex ? frame->points.size() / 2 : frame->points.size());
@@ -34,14 +35,7 @@ QByteArray FrameParser::parse(Frame* frame) {
   frame->isComplex ? stream << static_cast<quint8>(1) : stream << static_cast<quint8>(0);
   frame->isFloat ? stream << static_cast<quint8>(1) : stream << static_cast<quint8>(0);
 
-  /*if (frame->isComplex) {
-      stream << static_cast<quint8>(frame->pointSize / 2);
-    }
-  else {
-      stream << frame->pointSize;
-    }*/
   stream << frame->pointSize;
-   stream.setByteOrder(QDataStream::LittleEndian);
 
   defineType(stream, frame);
 
@@ -69,9 +63,11 @@ void writeString(QDataStream& stream, QString& string) {
 void defineType(QDataStream& stream, Frame* frame) {
   if (frame->isFloat == true) {
       if (frame->pointSize == 4) {
+          stream.setFloatingPointPrecision(QDataStream::FloatingPointPrecision::SinglePrecision);
           writeValues<float>(stream, frame);
         }
       else if (frame->pointSize == 8) {
+          stream.setFloatingPointPrecision(QDataStream::FloatingPointPrecision::DoublePrecision);
           writeValues<double>(stream, frame);
         }
     }

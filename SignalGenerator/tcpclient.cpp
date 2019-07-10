@@ -24,6 +24,7 @@ TcpClient::~TcpClient() {
 }
 
 void TcpClient::send(QByteArray& data) {
+  debugData(data);
   _socket.write(data);
   _socket.flush();
 }
@@ -32,6 +33,7 @@ void TcpClient::send(QByteArray& data) {
 
 void debugData(QByteArray data) {
   data = data.toHex();
+  qDebug() << "===============================================================";
   QString line;
   for (auto i = 0; i < data.size(); ++i) {
       line += data[i];
