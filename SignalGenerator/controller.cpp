@@ -3,10 +3,10 @@
 #include "sinusoscillator.h"
 #include "channelattributes.h"
 #include "tcpclient.h"
+#include "udpclient.h"
 #include "frameparser.h"
 
 #include <QDebug>
-#include <QThread>
 
 void setType(QString type, ChannelAttributes& ch_attr);
 void setChannelAttributes(ConfigReader& configReader, ChannelAttributes& ch_attr);
@@ -48,7 +48,13 @@ void Controller::run() {
   QString host = configReader.value("config/host");
   quint16 port = static_cast<quint16>(configReader.value("config/port").toUInt());
 
-  _client = new TcpClient(host, port, this);
+  QString protocol = configReader.value("config/protocol");
+  if (protocol=="UDP") {
+      _client = new UdpClient(host, port, this);
+    }
+  else {
+       _client = new TcpClient(host, port, this);
+    }
   connect(_client, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(handleError(QAbstractSocket::SocketError)));
   connect(_frameCreator, SIGNAL(generated(Frame*)), this, SLOT(receiveFrame(Frame*)));
   _client->connectToHost();

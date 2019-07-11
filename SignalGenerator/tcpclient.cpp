@@ -1,8 +1,7 @@
 #include "tcpclient.h"
+#include <datadebugger.h>
 #include <QDebug>
-#include <QMutex>
 
-void debugData(QByteArray data);
 
 TcpClient::TcpClient(QString host, quint16 port, QObject *parent) : Client(host, port, parent)
 {
@@ -11,11 +10,11 @@ TcpClient::TcpClient(QString host, quint16 port, QObject *parent) : Client(host,
 
 void TcpClient::connectToHost() {
    _socket.connectToHost(host(), port(), QIODevice::WriteOnly);
-   if (!_socket.waitForConnected(1000 * 3)) {
-       qDebug() << "No connect!";
-     } else {
-       qDebug() << "Successful connect!";
-    }
+     if (!_socket.waitForConnected(1000 * 3)) {
+         qDebug() << "TCP_client: No connect!";
+       } else {
+         qDebug() << "TCP_client: Successful connect!";
+      }
 }
 
 TcpClient::~TcpClient() {
@@ -24,25 +23,8 @@ TcpClient::~TcpClient() {
 }
 
 void TcpClient::send(QByteArray& data) {
-  debugData(data);
+  DataDebugger::debugData(data);
   _socket.write(data);
   _socket.flush();
 }
 
-
-
-void debugData(QByteArray data) {
-  data = data.toHex();
-  qDebug() << "===============================================================";
-  QString line;
-  for (auto i = 0; i < data.size(); ++i) {
-      line += data[i];
-      if ((i + 1) % 8 == 0) {
-          qDebug() << line;
-          line.clear();
-        }
-    }
-  if (!line.isEmpty()) {
-      qDebug() << line;
-    }
-}

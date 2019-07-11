@@ -30,24 +30,28 @@ SOURCES += \
         client.cpp \
         configreader.cpp \
         controller.cpp \
+        datadebugger.cpp \
         framecreator.cpp \
         frameparser.cpp \
         main.cpp \
         oscillator.cpp \
         sinusoscillator.cpp \
-        tcpclient.cpp
+        tcpclient.cpp \
+        udpclient.cpp
 
 HEADERS += \
         channelattributes.h \
         client.h \
         configreader.h \
         controller.h \
+        datadebugger.h \
         frame.h \
         framecreator.h \
         frameparser.h \
         oscillator.h \
         sinusoscillator.h \
-        tcpclient.h
+        tcpclient.h \
+        udpclient.h
 
 
 # Default rules for deployment.
