@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config>
+	<protocol>UDP</protocol>
 	<channel_name>TestChannel</channel_name>
 	<x_measure>C</x_measure>
 	<y_measure>V</y_measure>
